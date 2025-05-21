@@ -1,0 +1,31 @@
+# Archivos y carpetas de entorno
+.env
+*.env
+
+# Dependencias
+node_modules/
+vendor/
+
+# Archivos de compilación
+dist/
+build/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos de Python (si aplica)
+__pycache__/
+*.pyc

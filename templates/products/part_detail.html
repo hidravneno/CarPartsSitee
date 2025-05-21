@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ part.name }}</h2>
+  <p>{{ part.description }}</p>
+  <p>
+    <strong>${{ part.price }}</strong>
+  </p>
+  <a class="btn btn-primary" href="{% url 'edit_part' part.id %}">Edit</a>
+{% endblock %}

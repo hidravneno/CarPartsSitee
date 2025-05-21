@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Parts List</h2>
+<ul>
+  {% for part in parts %}
+    <li><a href="{% url 'part_detail' part.id %}">{{ part.name }}</a></li>
+  {% endfor %}
+</ul>
+<a class="btn btn-success" href="{% url 'add_part' %}">Add New Part</a>
+{% endblock %}
