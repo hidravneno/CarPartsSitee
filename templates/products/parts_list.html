@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Parts List</h2>
-<ul>
+<ul class="list-group">
   {% for part in parts %}
-    <li><a href="{% url 'part_detail' part.id %}">{{ part.name }}</a></li>
+    <li class="list-group-item d-flex align-items-center">
+      {% if part.image %}
+        <img src="{{ part.image.url }}" alt="{{ part.name }}" class="img-thumbnail me-3" style="width: 50px; height: 50px; object-fit: cover;">
+      {% endif %}
+      <div>
+        <a href="{% url 'part_detail' part.id %}">{{ part.name }}</a>
+        <p class="mb-0"><strong>${{ part.price }}</strong></p>
+      </div>
+    </li>
   {% endfor %}
 </ul>
-<a class="btn btn-success" href="{% url 'add_part' %}">Add New Part</a>
+<a class="btn btn-success mt-3" href="{% url 'add_part' %}">Add New Part</a>
 {% endblock %}

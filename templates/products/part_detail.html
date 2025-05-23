@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2>{{ part.name }}</h2>
+  
+  {% if part.image %}
+    <img src="{{ part.image.url }}" alt="{{ part.name }}" class="img-fluid mb-3" style="max-width: 100%; height: auto;">
+  {% else %}
+    <p><em>No image available for this part.</em></p>
+  {% endif %}
+  
   <p>{{ part.description }}</p>
   <p>
     <strong>${{ part.price }}</strong>

@@ -15,7 +15,7 @@ def part_edit(request, pk=None):
         part = get_object_or_404(Part, pk=pk)
     else:
         part = None
-    form = PartForm(request.POST or None, instance=part)
+    form = PartForm(request.POST or None, request.FILES or None, instance=part)  # Agrega request.FILES aquí
     if form.is_valid():
         form.save()
         return redirect('parts_list')

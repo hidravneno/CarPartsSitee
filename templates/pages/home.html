@@ -1,4 +1,41 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <h1>Welcome to CarPartsSite</h1>
+<section 
+    class="d-flex align-items-center justify-content-center text-white" 
+    style="background: url('https://source.unsplash.com/1600x600/?car,parts,automotive') no-repeat center center; background-size: cover; height: 60vh; position: relative;"
+>
+    <div style="background-color: rgba(0, 0, 0, 0.5); padding: 3rem; border-radius: 0.5rem;">
+        <h1 class="display-3 fw-bold mb-3">Welcome to CarPartsSite</h1>
+        <p class="lead mb-4">Your one-stop shop for quality car parts.</p>
+        <a href="/products/" class="btn btn-warning btn-lg shadow">Browse Products</a>
+    </div>
+</section>
+
+<section class="container my-5">
+    <h2 class="mb-4 text-center">Why Choose Us?</h2>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="p-3 border rounded">
+                <i class="bi bi-truck fs-1 mb-3 text-warning"></i>
+                <h5>Fast Shipping</h5>
+                <p>Get your parts delivered quickly and safely.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="p-3 border rounded">
+                <i class="bi bi-shield-check fs-1 mb-3 text-warning"></i>
+                <h5>Quality Assurance</h5>
+                <p>All parts are tested and certified for durability.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="p-3 border rounded">
+                <i class="bi bi-people fs-1 mb-3 text-warning"></i>
+                <h5>Customer Support</h5>
+                <p>We’re here to help you 24/7 with expert advice.</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
