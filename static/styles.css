@@ -1,0 +1,14 @@
+.hero-background {
+    background: url('/static/images/fondo.jpg') no-repeat center center;
+    background-size: cover;
+    height: 70vh;
+    position: relative;
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}

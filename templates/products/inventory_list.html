@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Inventory List</h1>
+  <ul>
+    {% for item in items %}
+      <li>{{ item.name }}: {{ item.quantity }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
