@@ -1,4 +1,5 @@
-# Archivos y carpetas de entorno
+# Entornos virtuales
+venv/
 .env
 *.env
 
@@ -14,10 +15,8 @@ build/
 .DS_Store
 Thumbs.db
 
-# Archivos de logs
+# Archivos de logs y temporales
 *.log
-
-# Archivos temporales
 *.tmp
 *.swp
 
@@ -26,6 +25,11 @@ Thumbs.db
 .idea/
 *.code-workspace
 
-# Archivos de Python (si aplica)
+# Archivos de Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Base de datos
+db.sqlite3
