@@ -2,49 +2,70 @@
 
 {% block content %}
 <section class="container my-5">
+  <!-- Title and Add Button -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="mb-0">Available Parts</h3>
-    <a href="{% url 'add_part' %}" class="btn btn-warning">
-      <i class="bi bi-plus-circle"></i> Add New Part
+    <h3 class="fw-bold text-dark mb-0">Available Parts</h3>
+    <a href="{% url 'add_part' %}" class="btn btn-warning rounded-pill px-4 py-2 shadow-sm">
+      <i class="bi bi-plus-circle me-2"></i> Add New Part
     </a>
   </div>
 
-  <!-- Filter dropdown -->
+  <!-- Filter & Search Form -->
   <form method="get" class="mb-4">
-    <div class="input-group">
-      <select name="category" class="form-select" onchange="this.form.submit()">
-        <option value="">All Categories</option>
-        {% for cat in categories %}
-          <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
-        {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-outline-secondary">Filter</button>
+    <div class="row g-2">
+      <!-- Search Field -->
+      <div class="col-md-4">
+        <input type="text" name="search" class="form-control rounded-pill" 
+               placeholder="🔍 Search by name..." value="{{ request.GET.search }}">
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="col-md-4">
+        <select name="category" class="form-select rounded-pill" onchange="this.form.submit()">
+          <option value="">All Categories</option>
+          {% for cat in categories %}
+            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>
+              {{ cat }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-outline-secondary w-100 rounded-pill">
+          <i class="bi bi-funnel"></i> Filter
+        </button>
+      </div>
     </div>
   </form>
 
+  <!-- Parts Grid -->
   {% if parts %}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for part in parts %}
         <div class="col">
-          <div class="card h-100 shadow-sm border-0">
+          <div class="card h-100 border-light shadow-sm">
             {% if part.image %}
-              <div class="ratio ratio-4x3">
-                <img src="{{ part.image.url }}" alt="{{ part.name }}" class="card-img-top object-fit-cover rounded-top" style="width: 100%; height: 100%; object-fit: cover;">
+              <div class="w-100" style="max-height: 240px; overflow: hidden;">
+                <img src="{{ part.image.url }}" alt="{{ part.name }}" class="card-img-top rounded-top img-fluid" style="object-fit: contain; width: 100%; height: 100%;">
               </div>
             {% endif %}
             <div class="card-body">
               <h5 class="card-title mb-1">
-                <a href="{% url 'part_detail' part.id %}" class="text-decoration-none text-dark">
+                <a href="{% url 'part_detail' part.id %}" class="text-decoration-none text-dark fw-semibold">
                   {{ part.name }}
                 </a>
               </h5>
-              <p class="card-text text-success fw-semibold">${{ part.price }}</p>
+              <p class="card-text text-success fw-semibold fs-5">${{ part.price }}</p>
             </div>
-            <div class="card-footer bg-transparent border-0">
-              <div class="d-flex gap-2">
-                <a href="{% url 'part_detail' part.id %}" class="btn btn-outline-primary btn-sm flex-grow-1">View Details</a>
-                <a href="{% url 'part_delete' part.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
-              </div>
+            <div class="card-footer bg-transparent border-0 d-flex gap-2">
+              <a href="{% url 'part_detail' part.id %}" class="btn btn-outline-primary btn-sm w-100 rounded-pill">
+                <i class="bi bi-eye"></i> View
+              </a>
+              <a href="{% url 'part_delete' part.id %}" class="btn btn-outline-danger btn-sm rounded-pill">
+                <i class="bi bi-trash"></i>
+              </a>
             </div>
           </div>
         </div>

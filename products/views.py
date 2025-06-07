@@ -58,16 +58,21 @@ def part_delete(request, pk):
     return render(request, 'products/part_confirm_delete.html', {'part': part})
 
 def parts_list(request):
+    search_query = request.GET.get('search', '')
+    selected_category = request.GET.get('category', '')
     parts = Part.objects.all()
-    selected_category = request.GET.get('category')  # Obtener la categoría seleccionada del query string
-    if selected_category:
-        parts = parts.filter(category=selected_category)  # Filtrar las partes por la categoría seleccionada
 
-    categories = Part.objects.values_list('category', flat=True).distinct()  # Obtener las categorías únicas
+    if search_query:
+        parts = parts.filter(name__icontains=search_query)
+    if selected_category:
+        parts = parts.filter(category=selected_category)
+
+    categories = Part.objects.values_list('category', flat=True).distinct()
+
     context = {
         'parts': parts,
         'categories': categories,
-        'selected_category': selected_category,  # Pasar la categoría seleccionada al contexto
+        'selected_category': selected_category,
     }
     return render(request, 'products/parts_list.html', context)
 
