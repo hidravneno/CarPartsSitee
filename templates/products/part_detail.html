@@ -1,39 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container d-flex justify-content-center">
-    <div class="col-md-8 col-lg-6">
-      <div class="card shadow-lg border-0 mb-5">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-          <h4 class="mb-0">{{ part.name }}</h4>
-          <a href="{% url 'edit_part' part.id %}" class="btn btn-light btn-sm d-flex align-items-center"><i class="bi bi-pencil me-1"></i> Edit</a>
+<div class="container d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-lg border-0 mb-5">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">{{ part.name }}</h4>
+        <a href="{% url 'edit_part' part.id %}" class="btn btn-light btn-sm d-flex align-items-center"><i
+            class="bi bi-pencil me-1"></i> Edit</a>
+      </div>
+      <div class="card-body">
+        {% if part.image %}
+        <div class="text-center mb-4">
+          <img src="{{ part.image.url }}" alt="{{ part.name }}" class="img-fluid rounded shadow"
+            style="max-width: 300px; object-fit: cover;" />
         </div>
-        <div class="card-body">
-          {% if part.image %}
-            <div class="text-center mb-4">
-              <img src="{{ part.image.url }}" alt="{{ part.name }}" class="img-fluid rounded shadow" style="max-width: 300px; object-fit: cover;" />
-            </div>
-          {% else %}
-            <div class="alert alert-warning text-center">
-              <em>No image available for this part.</em>
-            </div>
-          {% endif %}
+        {% else %}
+        <div class="alert alert-warning text-center">
+          <em>No image available for this part.</em>
+        </div>
+        {% endif %}
 
-          <div class="mb-3">
-            <h5>Description</h5>
-            <p class="text-muted">{{ part.description }}</p>
-          </div>
 
-          <div class="mb-3">
-            <h5>Price</h5>
-            <p class="text-success h5">
-              <strong>${{ part.price }}</strong>
-            </p>
-          </div>
+
+        <div class="mb-3">
+          <h5>Price</h5>
+          <p class="text-success h5">
+            <strong>${{ part.price }}</strong>
+          </p>
         </div>
-        <div class="card-footer text-end">
-          <a href="{% url 'parts_list' %}" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to List</a>
-        </div>
+      </div>
+      <div class="card-footer text-end">
+        <a href="{% url 'parts_list' %}" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to
+          List</a>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

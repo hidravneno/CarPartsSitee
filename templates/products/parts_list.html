@@ -4,7 +4,7 @@
 <section class="container my-5">
   <!-- Title and Add Button -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h3 class="fw-bold text-dark mb-0">Available Parts</h3>
+    <h3 class="fw-bold text-dark mb-0">PARTS AVAILABLE IN STOCK</h3>
     <a href="{% url 'add_part' %}" class="btn btn-warning rounded-pill px-4 py-2 shadow-sm">
       <i class="bi bi-plus-circle me-2"></i> Add New Part
     </a>
@@ -31,14 +31,7 @@
         </select>
       </div>
 
-      <!-- Submit Button -->
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-outline-secondary w-100 rounded-pill">
-          <i class="bi bi-funnel"></i> Filter
-        </button>
-      </div>
-    </div>
-  </form>
+      
 
   <!-- Parts Grid -->
   {% if parts %}
