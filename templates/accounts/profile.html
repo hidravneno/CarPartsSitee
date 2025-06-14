@@ -1,31 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="container mt-5">
-    <div class="card shadow-lg mx-auto border-0" style="max-width: 600px; background: #f8f9fa;">
-      <div class="card-body text-center py-5">
-        <h2 class="card-title mb-3 text-dark fw-bold">
-          Welcome, {{ request.user.username }} 🎉
-        </h2>
+<div class="container mt-5">
+  <div class="card shadow-lg mx-auto border-0" style="max-width: 600px; background: #f8f9fa;">
+    <div class="card-body text-center py-5">
+      <h2 class="card-title mb-3 text-dark fw-bold">
+        Welcome, {{ request.user.username }} 🎉
+      </h2>
 
-        <a href="{% url 'logout' %}" class="btn btn-outline-danger mb-3">
-          <i class="bi bi-box-arrow-right"></i> Logout
+      <!-- Opciones según permisos -->
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        {% if perms.products.view_inventory %}
+        <a href="{% url 'inventory_list' %}" class="btn btn-primary">
+          <i class="bi bi-eye"></i> View Inventory
         </a>
+        {% endif %}
 
-        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
-          {% if perms.products.view_inventory %}
-            <a href="{% url 'inventory_list' %}" class="btn btn-primary">
-              <i class="bi bi-eye"></i> View Inventory
-            </a>
-          {% endif %}
-
-          {% if perms.products.manage_inventory %}
-            <a href="{% url 'parts_list' %}" class="btn btn-success">
-              <i class="bi bi-tools"></i> Manage Inventory
-            </a>
-          {% endif %}
-        </div>
+        {% if perms.products.manage_inventory %}
+        <a href="{% url 'parts_list' %}" class="btn btn-success">
+          <i class="bi bi-tools"></i> Manage Inventory
+        </a>
+        {% endif %}
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

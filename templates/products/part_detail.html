@@ -1,18 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container d-flex justify-content-center">
-  <div class="col-md-8 col-lg-6">
-    <div class="card shadow-lg border-0 mb-5">
-      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-        <h4 class="mb-0">{{ part.name }}</h4>
-        <a href="{% url 'edit_part' part.id %}" class="btn btn-light btn-sm d-flex align-items-center"><i
-            class="bi bi-pencil me-1"></i> Edit</a>
+<style>
+  /* Card hover effect */
+  .card-custom {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 1rem;
+  }
+  .card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Header with subtle gradient and shadow */
+  .card-header-custom {
+    background: linear-gradient(90deg, #0069d9, #0053ba);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+
+  /* Edit button styling */
+  .btn-edit {
+    background-color: #ffc107;
+    color: #212529;
+    font-weight: 600;
+    border-radius: 1.5rem;
+    padding: 0.25rem 0.8rem;
+    transition: background-color 0.3s ease;
+  }
+  .btn-edit:hover {
+    background-color: #e0a800;
+    color: #212529;
+    text-decoration: none;
+  }
+
+  /* Price styling */
+  .price-tag {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.05em;
+  }
+</style>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh; padding: 1rem;">
+  <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+    <div class="card shadow-sm border-0 card-custom">
+      <div class="card-header text-white d-flex justify-content-between align-items-center card-header-custom">
+        <h4 class="mb-0 text-truncate" title="{{ part.name }}">{{ part.name }}</h4>
+        <a href="{% url 'edit_part' part.id %}" class="btn btn-edit d-flex align-items-center">
+          <i class="bi bi-pencil me-1"></i> Edit
+        </a>
       </div>
       <div class="card-body">
         {% if part.image %}
         <div class="text-center mb-4">
           <img src="{{ part.image.url }}" alt="{{ part.name }}" class="img-fluid rounded shadow"
-            style="max-width: 300px; object-fit: cover;" />
+               style="max-width: 300px; max-height: 300px; object-fit: cover;" />
         </div>
         {% else %}
         <div class="alert alert-warning text-center">
@@ -20,18 +62,15 @@
         </div>
         {% endif %}
 
-
-
         <div class="mb-3">
           <h5>Price</h5>
-          <p class="text-success h5">
-            <strong>${{ part.price }}</strong>
-          </p>
+          <p class="text-success h5 fw-bold price-tag">${{ part.price }}</p>
         </div>
       </div>
       <div class="card-footer text-end">
-        <a href="{% url 'parts_list' %}" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to
-          List</a>
+        <a href="{% url 'parts_list' %}" class="btn btn-secondary btn-sm">
+          <i class="bi bi-arrow-left"></i> Back to List
+        </a>
       </div>
     </div>
   </div>

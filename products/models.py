@@ -9,6 +9,8 @@ class Part(models.Model):
         ('Interior', 'Interior'),
         ('Body', 'Body'),
         ('Tires', 'Tires'),
+        ('Motor oil','Motor oil'),
+
     ]
 
     name = models.CharField(max_length=100)
