@@ -84,10 +84,16 @@ WSGI_APPLICATION = 'CarPartsSite.wsgi.application'
 # Default to SQLite for development
 default_db_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 
-# Database configuration
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL', default_db_url))
-}
+# Database configuration with error handling
+try:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL', default_db_url))
+    }
+except dj_database_url.ParseError:
+    print("DATABASE_URL inválido. Usando SQLite como respaldo.")
+    DATABASES = {
+        'default': dj_database_url.parse(default_db_url)
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
