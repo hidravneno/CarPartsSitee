@@ -82,16 +82,12 @@ WSGI_APPLICATION = 'CarPartsSite.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Default to SQLite for development
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+default_db_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 
-# Override with PostgreSQL for production if DATABASE_URL is set
-if os.getenv('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
+# Database configuration
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL', default_db_url))
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
